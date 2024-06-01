@@ -5,10 +5,10 @@ const books = require('../../frontend/public/data/data.json')
 
 router.post('/', (req, res, next) => {
     delete req.body.id;
-const book = new Book({
+const Newbook = new Book({
 ...req.body
 });
-book.save()
+Newbook.save()
 .then(() => res.status(201).json({ message: 'livre enregistré!' }))
 .catch(error => res.status(400).json({ error }));
 

@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.disable('etag')
     })
 
-    app.use('/api/books', stuffRoutes)
+    app.use('/api/library/', stuffRoutes)
 
 
 module.exports = app;
