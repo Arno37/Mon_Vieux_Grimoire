@@ -1,19 +1,28 @@
 const mongoose = require('mongoose');
 
- const bookSchema = mongoose.Schema ({
-   id: { type: String, required: true },
-    userId: { type: String, required: true },
-    title: { type: String, required: true },
-    author: { type: String, required: true },
-    imageUrl: { type: String, required: true },
-    year: { type: Number, required: true },
-    genre: { type: String, required: true },
-    ratings: [
-        {
-            userId: { type: String, required: true }, 
-            grade: {type: Number, required: true},
-        }
-    ],
-    averageRating: { type: Number, required: true }
- });
- module.exports = mongoose.model('Book', bookSchema)
+const ratingSchema = mongoose.Schema({
+  userId: { type: String, required: true },
+  grade: { type: Number, required: true }
+});
+
+const bookSchema = mongoose.Schema({
+  title: { type: String, required: true },
+  author: { type: String, required: true },
+  imageUrl: { type: String, required: true },
+  year: { type: Number, required: true },
+  genre: { type: String, required: true },
+  ratings: [ratingSchema], // Un tableau d'objets de notation
+  averageRating: { type: Number, default: 0 } // Peut être calculé
+});
+
+bookSchema.pre('save', function(next) {
+    if (this.ratings.length > 0) {
+      const total = this.ratings.reduce((acc, rating) => acc + rating.grade, 0);
+      this.averageRating = total / this.ratings.length;
+    } else {
+      this.averageRating = 0;
+    }
+    next();
+  });
+
+module.exports = mongoose.model('Book', bookSchema);
