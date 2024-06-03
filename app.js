@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const libraryRoutes = require('./routes/library')
+const libraryRoutes = require('./routes/library');
+const userRoutes =  require ('./routes/user');
 
 
 
@@ -36,7 +37,8 @@ Book.deleteOne({_id: req.params.id })
 app.disable('etag')
     
 
-    app.use('/api/library/', libraryRoutes)
+    app.use('/api/library', libraryRoutes);
+    app.use('api/auth', userRoutes);
 
 
 module.exports = app;
