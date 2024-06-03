@@ -38,7 +38,7 @@ app.disable('etag')
     
 
     app.use('/api/library', libraryRoutes);
-    app.use('api/auth', userRoutes);
+    app.use('/api/auth', userRoutes);
 
 
 module.exports = app;
