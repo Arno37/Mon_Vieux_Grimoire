@@ -26,6 +26,13 @@ Book.deleteOne({_id: req.params.id })
 .catch(error => res.status(400).json({ error }));
 })
 
+app.post ('/api/library', (req, res, next) => {
+  console.log(req.body)
+  res.status(201).json({
+    message: 'livre ajouté'
+  })
+
+});
 
     app.put('/api/library/:id', (req, res, next) => {
       Book.updateOne({_id: req.params.id }, {...req.body, _id: req.params.id })
@@ -34,9 +41,8 @@ Book.deleteOne({_id: req.params.id })
     });
 
 
-app.disable('etag')
     
-
+  app.use(express.json());
     app.use('/api/library', libraryRoutes);
     app.use('/api/auth', userRoutes);
 
