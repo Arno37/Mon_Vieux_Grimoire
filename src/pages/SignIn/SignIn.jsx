@@ -40,7 +40,7 @@ function SignIn({ setUser }) {
       }
     } catch (err) {
       console.log(err);
-      setNotification({ error: true, message: 'Paire login/mot de passe incorrecte' });
+      setNotification({ error: true, message: 'Identifiant et/ou mot de passe incorrect' });
       console.log('Some error occured during signing in: ', err);
     } finally {
       setIsLoading(false);
@@ -64,7 +64,7 @@ function SignIn({ setUser }) {
       }
       setNotification({ error: false, message: 'Votre compte a bien été créé, vous pouvez vous connecter' });
     } catch (err) {
-      setNotification({ error: true, message: 'Paire login/mot de passe incorrecte' });
+      setNotification({ error: true, message: 'Adresse email déjà utilisée' });
       console.log('Some error occured during signing up: ', err);
     } finally {
       setIsLoading(false);
