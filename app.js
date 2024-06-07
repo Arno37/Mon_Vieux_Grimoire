@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const books = require('../frontend/public/data/data.json')
 const booksRoutes = require('./routes/books');
 const userRoutes =  require ('./routes/user');
 const path = require('path');
