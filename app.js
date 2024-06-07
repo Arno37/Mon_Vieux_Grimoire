@@ -1,18 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const libraryRoutes = require('./routes/library');
+const books = require('../frontend/public/data/data.json')
+const booksRoutes = require('./routes/books');
 const userRoutes =  require ('./routes/user');
+const path = require('path');
 
+  
+const app = express();
+app.use(express.json())
 
-
-mongoose.connect('mongodb+srv://Arno:Fletcher37@cluster0.5auxlj2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+mongoose.connect('mongodb+srv://Arno:Fletcher37@cluster0.5auxlj2.mongodb.net/monvieuxgrimoire?retryWrites=true&w=majority&appName=Cluster0',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-  
-const app = express();
+
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -20,31 +24,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.delete ('/api/library/:id', (req, res, next) => {
-Book.deleteOne({_id: req.params.id })
-.then(() => res.status(200).json({ message: 'livre supprimé'}))
-.catch(error => res.status(400).json({ error }));
-})
-
-app.post ('/api/library', (req, res, next) => {
-  console.log(req.body)
-  res.status(201).json({
-    message: 'livre ajouté'
-  })
-
-});
-
-    app.put('/api/library/:id', (req, res, next) => {
-      Book.updateOne({_id: req.params.id }, {...req.body, _id: req.params.id })
-      .then(() => res.status(200).json({ message: 'livre modifié'}))
-      .catch(error => res.status(400));
-    });
-
-
-    
-  app.use(express.json());
-    app.use('/api/library', libraryRoutes);
+    app.use('/api/books', booksRoutes);
     app.use('/api/auth', userRoutes);
+    app.use('/pictures', express.static(path.join(__dirname, 'pictures')));
 
 
 module.exports = app;

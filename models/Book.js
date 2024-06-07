@@ -12,7 +12,7 @@ const bookSchema = mongoose.Schema({
   genre: { type: String, required: true },
   ratings: [ratingSchema], // Un tableau d'objets de notation
   averageRating: { type: Number, default: 0 }, // Peut être calculé
-  imageUrl: { type: String, required: true },
+  imageUrl: { type: String, required: false },
 });
 
 bookSchema.pre('save', function(next) {
