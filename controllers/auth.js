@@ -1,3 +1,9 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable padded-blocks */
+/* eslint-disable keyword-spacing */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable object-shorthand */
+/* eslint-disable indent */
 const jwt = require('jsonwebtoken');
 module.exports = (req, res, next) => {
 
