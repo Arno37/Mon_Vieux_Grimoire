@@ -1,6 +1,7 @@
+/* eslint-disable import/newline-after-import */
 const express = require('express');
 const router = express.Router();
-const auth = require('../controllers/auth');
+const auth = require('../middleware/auth');
 const multer = require('../middleware/multer');
 
 const booksCtrl = require('../controllers/books');

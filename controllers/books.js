@@ -19,6 +19,8 @@ const sharp = require('sharp');
 const path = require('path');
 const uploadPictures = 'pictures';
 
+
+
 exports.createBook = (req, res, next) => {
 const bookObject = JSON.parse(req.body.book);
 delete bookObject._id;
