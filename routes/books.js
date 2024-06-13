@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 /* eslint-disable import/newline-after-import */
 const express = require('express');
 const router = express.Router();
@@ -13,6 +14,5 @@ router.post('/', auth, multer, booksCtrl.createBook);
 router.post('/:id/rating', auth, booksCtrl.addRating);
 router.put('/:id', auth, multer, booksCtrl.modifyBook);
 router.delete('/:id', auth, booksCtrl.deleteBook);
-
 
 module.exports = router;

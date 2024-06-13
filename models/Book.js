@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 const mongoose = require('mongoose');
 
 const ratingSchema = mongoose.Schema({
@@ -16,4 +17,4 @@ const bookSchema = mongoose.Schema({
   averageRating: { type: Number, required: true, default: 0 },
 });
 
-module.exports = mongoose.model('Book', bookSchema)
+module.exports = mongoose.model('Book', bookSchema);
