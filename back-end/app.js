@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const booksRoutes = require('./routes/books');
 const userRoutes = require ('./routes/user');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.dist' });
 
 const app = express();
 mongoose.connect(`mongodb+srv://Arno:${process.env.MONGODB_PASSWORD}@cluster0.5auxlj2.mongodb.net/monvieuxgrimoire?retryWrites=true&w=majority&appName=Cluster0`)

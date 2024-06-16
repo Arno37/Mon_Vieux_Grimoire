@@ -1,10 +1,10 @@
 # Mon vieux Grimoire
 
+## Description
 
-## Comment lancer le projet ? 
+"Mon Vieux Grimoire" est une application web pour gérer des livres. Ce dépôt contient le frontend de l'application, développé avec React.
 
-### Avec npm
+## Prérequis
 
-Faites la commande `npm install` pour installer les dépendances puis `npm start` pour lancer le projet. 
-
-Le projet a été testé sur node 19. 
+- Node.js (version 14 ou supérieure)
+- npm (version 6 ou supérieure)
