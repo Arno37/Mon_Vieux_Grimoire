@@ -50,6 +50,9 @@ exports.createBook = (req, res, next) => {
           userId: req.auth.userId,
           imageUrl: `${req.protocol}://${req.get('host')}/${uploadPictures}/${fileName}`
         });
+        if (book.userId != req.auth.userId) {
+          return res.status(403).json({ message: '403: unauthorized request' });
+        }
 
         book.save()
           .then(() => res.status(201).json({ message: 'Livre enregistré!' }))
@@ -74,23 +77,74 @@ exports.getAllBooks = (req, res, next) => {
 };
 
 exports.modifyBook = (req, res, next) => {
-  const bookObject = req.file ? {
-    ...JSON.parse(req.body.book),
-    imageUrl: `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`
-  } : { ...req.body };
+  try {
+    const bookObject = req.file ? {
+      ...JSON.parse(req.body.book),
+      imageUrl: `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`
+    } : { ...req.body };
 
-  delete bookObject._userId;
+    delete bookObject._userId;
 
-  Book.findOne({ _id: req.params.id })
-    .then((book) => {
-      Book.updateOne({ _id: req.params.id }, { ...bookObject, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Livre modifié!' }))
-        .catch(error => res.status(401).json({ error }));
-    })
-    .catch((error) => {
-      res.status(400).json({ error });
-    });
+    Book.findOne({ _id: req.params.id })
+      .then((book) => {
+        if (!book) {
+          return res.status(404).json({ message: 'Livre non trouvé' });
+        }
+
+        if (book.userId != req.auth.userId) {
+          return res.status(403).json({ message: '403: requête non autorisée' });
+        }
+
+        const updateOperations = {
+          ...bookObject,
+          _id: req.params.id
+        };
+
+        if (req.file) {
+          const buffer = req.file.buffer;
+          const originalname = req.file.originalname.split(' ').join('_');
+          const extension = 'webp';
+          const fileName = originalname + Date.now() + '.' + extension;
+
+          sharp(buffer)
+            .resize(500)
+            .toFormat('webp')
+            .webp({ quality: 20 })
+            .toBuffer()
+            .then(data => {
+              fs.writeFileSync(path.join(uploadPictures, fileName), data);
+
+              updateOperations.imageUrl = `${req.protocol}://${req.get('host')}/${uploadPictures}/${fileName}`;
+
+              // Suppression de l'ancienne image
+              const oldFilename = book.imageUrl.split('/pictures/')[1];
+              fs.unlink(`pictures/${oldFilename}`, (err) => {
+                if (err) {
+                  console.log("Erreur lors de la suppression de l'ancienne image :", err);
+                }
+              });
+
+              // Mettre à jour le livre avec la nouvelle image
+              Book.updateOne({ _id: req.params.id }, updateOperations)
+                .then(() => res.status(200).json({ message: 'Livre modifié!' }))
+                .catch(error => res.status(400).json({ error }));
+            })
+            .catch(error => res.status(500).json({ error }));
+        } else {
+          // Si aucune nouvelle image n'est fournie, mettre à jour simplement les données du livre
+          Book.updateOne({ _id: req.params.id }, updateOperations)
+            .then(() => res.status(200).json({ message: 'Livre modifié!' }))
+            .catch(error => res.status(400).json({ error }));
+        }
+      })
+      .catch((error) => {
+        res.status(400).json({ error });
+      });
+  } catch (error) {
+    res.status(400).json({ error: 'Erreur inattendue' });
+  }
 };
+
 
 exports.deleteBook = (req, res, next) => {
   Book.findOne({ _id: req.params.id })
