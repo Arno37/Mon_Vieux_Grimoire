@@ -8,12 +8,16 @@ const mongoose = require('mongoose');
 const booksRoutes = require('./routes/books');
 const userRoutes = require ('./routes/user');
 const path = require('path');
+const helmet = require('helmet')
 require('dotenv').config({ path: '.env.dist' });
+
 
 const app = express();
 mongoose.connect(`mongodb+srv://Arno:${process.env.MONGODB_PASSWORD}@cluster0.5auxlj2.mongodb.net/monvieuxgrimoire?retryWrites=true&w=majority&appName=Cluster0`)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+  app.use(helmet());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
