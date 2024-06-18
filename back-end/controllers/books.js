@@ -92,7 +92,7 @@ exports.modifyBook = (req, res, next) => {
         }
 
         if (book.userId != req.auth.userId) {
-          return res.status(403).json({ message: '403: requête non autorisée' });
+          return res.status(403).json({ message: '403: unauthorized request' });
         }
 
         const updateOperations = {
