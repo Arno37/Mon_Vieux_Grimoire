@@ -177,7 +177,6 @@ exports.deleteBook = async (req, res, next) => {
     console.log('Livre supprimé:', req.params.id);
 
     return res.status(200).json({ message: 'Livre supprimé !' });
-    
   } catch (error) {
     console.error('Erreur lors de la suppression du livre:', error);
     return res.status(500).json({ error: 'Erreur lors de la suppression du livre' });
