@@ -151,20 +151,35 @@ exports.deleteBook = async (req, res, next) => {
     const book = await Book.findOne({ _id: req.params.id });
 
     if (!book) {
+      console.log('Livre non trouvé');
       return res.status(404).json({ message: 'Livre non trouvé' });
     }
 
     if (book.userId != req.auth.userId) {
+      console.log('403: unauthorized request');
       return res.status(403).json({ message: '403: unauthorized request' });
     }
 
     const filename = book.imageUrl.split('/pictures/')[1];
-    await fs.unlink(`pictures/${filename}`); // Suppression de l'image avec fs.promises.unlink
+    const filePath = path.join(__dirname, '../pictures', filename);
+    console.log('Chemin de l\'image à supprimer:', filePath);
+
+    // Vérification si le fichier existe avant de le supprimer
+    try {
+      await fs.access(filePath);
+      await fs.unlink(filePath); // Suppression de l'image avec fs.promises.unlink
+      console.log('Image supprimée:', filePath);
+    } catch (err) {
+      console.log('Erreur lors de la suppression de l\'image:', err);
+    }
 
     await Book.deleteOne({ _id: req.params.id });
+    console.log('Livre supprimé:', req.params.id);
 
     return res.status(200).json({ message: 'Livre supprimé !' });
+    
   } catch (error) {
+    console.error('Erreur lors de la suppression du livre:', error);
     return res.status(500).json({ error: 'Erreur lors de la suppression du livre' });
   }
 };
