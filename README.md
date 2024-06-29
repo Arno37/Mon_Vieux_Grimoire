@@ -31,6 +31,30 @@ I am responsible for:
 - npm (version 6 or higher)
 - Experience with back-end frameworks (Express)
 
+## Installation
+
+Follow these steps to get the project up and running on your local machine:
+
+    Clone the repository:
+
+git clone https://github.com/your-username/mon-vieux-grimoire.git
+
+Navigate to the project directory:
+
+cd mon-vieux-grimoire
+
+Install dependencies:
+
+    npm install
+
+## Development
+
+To start the development server, run:
+
+npm start
+
+This will launch the server and make the API available at http://localhost:3000
+
 ## Contribution
 
 Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
