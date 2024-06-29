@@ -4,9 +4,9 @@
 
 ## Description
 
-"Mon Vieux Grimoire" est une application web pour gérer des livres. Ce dépôt contient le frontend de l'application, développé avec React.
+"Mon Vieux Grimoire" is a web application for managing books. This repository contains the frontend of the application, developed with React.
 
-## Prérequis
+## Prerequisites
 
-- Node.js (version 14 ou supérieure)
-- npm (version 6 ou supérieure)
+- Node.js (version 14 or higher)
+- npm (version 6 or higher)
