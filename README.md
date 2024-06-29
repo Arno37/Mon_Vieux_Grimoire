@@ -35,23 +35,15 @@ I am responsible for:
 
 Follow these steps to get the project up and running on your local machine:
 
-    Clone the repository:
+Clone the repository: git clone https://github.com/your-username/mon-vieux-grimoire.git
 
-git clone https://github.com/your-username/mon-vieux-grimoire.git
+Navigate to the project directory: cd mon-vieux-grimoire
 
-Navigate to the project directory:
-
-cd mon-vieux-grimoire
-
-Install dependencies:
-
-    npm install
+Install dependencies: npm install
 
 ## Development
 
-To start the development server, run:
-
-npm start
+To start the development server, run: npm start
 
 This will launch the server and make the API available at http://localhost:3000
 
