@@ -1,4 +1,6 @@
-# Mon vieux Grimoire
+## Développez le back-end d'un site de notation de livres
+
+![image](https://github.com/Arno37/Mon_Vieux_Grimoire/assets/140819974/7ecbf2dc-deb6-4d04-9909-4b146017a19f)
 
 ## Description
 
