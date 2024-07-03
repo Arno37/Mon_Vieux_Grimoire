@@ -1,7 +1,7 @@
 
 ## Développez le back-end d'un site de notation de livres
 
-![image](pictures/VG.png)
+![pictures](pictures/VG.png)
 
 ## Description
 
