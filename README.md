@@ -4,7 +4,7 @@
 ![image](https://raw.githubusercontent.com/Arno37/Mon_Vieux_Grimoire/main/back-end/pictures/VG.png)
 
 ![image](https://raw.githubusercontent.com/Arno37/Mon_Vieux_Grimoire/main/back-end/pictures/VG1.png)
-![image](https://raw.githubusercontent.com/Arno37/Kasa/main/src/pic/kasa-renamed.png)
+
 
 ## Description
 
