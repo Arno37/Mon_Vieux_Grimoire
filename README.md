@@ -3,7 +3,7 @@
 
 ![image](https://raw.githubusercontent.com/Arno37/Mon_Vieux_Grimoire/main/back-end/pictures/VG.png)<br><br><br><br><br><br>
 
-![image](https://raw.githubusercontent.com/Arno37/Mon_Vieux_Grimoire/main/back-end/pictures/VG1.png)
+![image](https://raw.githubusercontent.com/Arno37/Mon_Vieux_Grimoire/main/back-end/pictures/VG1.png)<br><br><br><br>
 
 
 ## Description
