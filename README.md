@@ -1,7 +1,7 @@
 
 ## Développez le back-end d'un site de notation de livres
 
-![image](https://github.com/Arno37/Mon_Vieux_Grimoire/blob/main/back-end/pictures/VG.png)
+![image](pictures/VG.png)
 
 ## Description
 
